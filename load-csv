@@ -1,0 +1,17 @@
+source /etc/profile
+for alpha in `ls /home/acornfresh/acornfresh_plan_*.csv`; do
+        echo 'OPTIONS (skip=1)' > /home/oracle/acornacornfresh_dev/acornfresh_plan_ft.ctl
+        echo 'LOAD DATA' >> /home/oracle/acornacornfresh_dev/acornfresh_plan_ft.ctl
+        echo 'CHARACTERSET AL32UTF8' >> /home/oracle/acornacornfresh_dev/acornfresh_plan_ft.ctl
+        echo 'INFILE "'$alpha'"' >> /home/oracle/acornacornfresh_dev/acornfresh_plan_ft.ctl
+        echo 'append' >> /home/oracle/acornacornfresh_dev/acornfresh_plan_ft.ctl
+        echo 'INTO TABLE acoprog_lus.acornbu_plan_ft' >> /home/oracle/acornacornfresh_dev/acornfresh_plan_ft.ctl
+        echo 'Fields terminated by ","' >> /home/oracle/acornacornfresh_dev/acornfresh_plan_ft.ctl
+        echo 'trailing nullcols' >> /home/oracle/acornacornfresh_dev/acornfresh_plan_ft.ctl
+        echo '(' >> /home/oracle/acornacornfresh_dev/acornfresh_plan_ft.ctl
+        echo 'RIQI,TGJH,JHLX,JHLX2,JFLX,ZXL,DJL,DJL2,ZFY,QCZXCB,PJDJCB,ZJDDH,ZJDDJE,JJDDH,JJDDJE,ZDDH,ZDDJE,ZJJGS,JJJGS,ZJGS,ZHL,ROI,XDXKS,GGFKS,FWYMS,YMPJFWSZ,SDJDS,SPGZS,DPGZS,YYS,LJS,FILENAME constant  "'$alpha'"' >> /home/oracle/acornacornfresh_dev/acornfresh_plan_ft.ctl
+        echo ')' >> /home/oracle/acornacornfresh_dev/acornfresh_plan_ft.ctl
+
+        sqlldr username/passwd@xe control=/home/oracle/acornacornfresh_dev/acornfresh_plan_ft.ctl
+        mv $alpha /home/acornfresh/bak/
+done
